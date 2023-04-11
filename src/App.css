@@ -40,7 +40,6 @@
 
 .HeaderMenu {
   display: flex;
-  flex-wrap: nowrap;
 }
 
 .Logo {
@@ -67,12 +66,15 @@
 }
 
 .OknoTrybyNauki {
+  left: 35%;
+  position:fixed;
   margin-top: 80px;
   padding-inline: 20px;
   border: 1px solid black;
   border-radius: 20px;
   display: block;
   margin-left: -130px;
+  background-color: white;
 }
 
 .row {
@@ -116,10 +118,12 @@
   display: inline-block;
   font-size: large;
   padding-left: 40px;
-  left: 670px;
+  left: 0%;
   margin-top: 48px;
   font-weight: bold;
-  position:fixed;
+  position: relative;
+  top: 0;
+  bottom: 0;
 }
 
 .Premium:hover {
@@ -130,16 +134,19 @@
   display: inline-block;
   margin-top: 53px;
   padding-left: 6px;
-  position: fixed;
-  left: 785px;
+  position: relative;
+  left: 0%;
 }
 
 .OknoPremium {
+  position: fixed;
   margin-top: 80px;
   padding-inline: 20px;
   border: 1px solid black;
   border-radius: 20px;
   margin-left: 30px;
+  background-color: white;
+  left: 35%;
 }
 
 .gbpremiumlogo {
@@ -163,8 +170,9 @@ flex-direction: row;
 }
 
 .ZalogujSie {
-  position: fixed;
-  right: 450px;
+  position: relative;
+  top: 0;
+  left: 32%;
   width: 191px;
   height: 70px;
   margin-top: 20px;
@@ -173,11 +181,16 @@ flex-direction: row;
   font-weight: bold;
   font-size: 17px;
   color: white;
+}
+
+.ZalogujSie:hover {
+ background-color: #29927C;
 }
 
 .ZarejestrujSie {
-  position: fixed;
-  right: 240px;
+  position: relative;
+  top: 0;
+  left: 33%;
   width: 191px;
   height: 70px;
   margin-top: 20px;
@@ -188,6 +201,57 @@ flex-direction: row;
   color: white;
 }
 
+.ZarejestrujSie:hover {
+  background-color: #29927C;
+ }
+
 .Srodek {
   background-color: #f3f3f3;
+}
+
+.Shows {
+  margin-top: -1px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 245px;
+}
+
+.firstShowimg {
+  margin-left: 460px;
+  margin-top: -30px;
+  padding-top: 5px;
+}
+
+.secondShowimg {
+  margin-left: 445px;
+  margin-top: -30px;
+  padding-top: 5px;
+}
+
+.firstShow {
+  box-sizing: border-box;
+  border: 2px black solid;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+.secondShow {
+  border: 2px black solid;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+.thirdShow {
+  box-sizing: border-box;
+  border: 2px black solid;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+
+.foot {
+  font-style: italic;
+  margin-left: 40%;
+  margin-top: .8%;
+  margin-bottom: .8%;
+  font-weight: 400;
 }

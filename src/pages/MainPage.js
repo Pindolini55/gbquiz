@@ -10,6 +10,9 @@ import qi from './../resources/quiz-icon.png';
 import ti from './../resources/test-icon.png';
 import ui from './../resources/ukladanie-icon.png';
 import gbpr from './../resources/gbpremium.png';
+import fs from './../resources/firstShow.png';
+import ss from './../resources/secondShow.png';
+import ts from './../resources/thirdShow.png';
 
 function MainPage() {
 
@@ -141,20 +144,29 @@ function MainPage() {
   </div> 
 
   <div className='Srodek'>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
-    <p>gbs</p>
+    <div className='firstShow'>
+    <p className='Shows'>Pokaż na co się stać i ucz się dzięki wielu trybom nauki!</p>
+    <img className='firstShowimg' src={fs} alt="Pokaz 1" />
+    </div>
+
+    <div className='secondShow'>
+    <p className='Shows'>Rywalizuj z innymi graczami w testach online!</p>
+    <img className='secondShowimg' src={ss} alt="Pokaz 1" />
+    </div>
+
+    <div className='thirdShow'>
+    <p className='Shows'>Twórz własne quizy/testy i sprawdź innych!</p>
+    <img className='firstShowimg' src={ts} alt="Pokaz 1" />
+    </div>
+  
+
+
   </div>
 
 
 
+  <footer className='foot'>Copyright © GbQuiz 2023</footer>
 </div>
-
 
 
 
