@@ -57,11 +57,13 @@
   display: inline-block;
   font-size: large;
   padding-left: 40px;
-  margin-top: 48px;
   font-weight: bold;
+  min-width: 143px;
 }
 
-
+.TrybyNauki:hover {
+  transform: scale(1.08);
+}
 
 .TrybyNauki:hover {
   text-decoration: underline rgb(15, 189, 151) 2px;
@@ -73,17 +75,17 @@
 }
 
 .OknoTrybyNauki {
-  left: 35%;
-  position:fixed;
-  margin-top: 80px;
+  /* left: 35%; */
+  position: absolute;
+  /* margin-top: 80px; */
   padding-inline: 20px;
   border: 1px solid black;
   border-radius: 20px;
   display: block;
-  margin-left: -130px;
+  /* margin-left: -130px; */
   background-color: white;
+  min-width: 357px;
 }
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -130,11 +132,11 @@
   font-size: large;
   padding-left: 40px;
   left: 0%;
-  margin-top: 48px;
   font-weight: bold;
   position: relative;
   top: 0;
   bottom: 0;
+  min-width: 143px;
 }
 
 .Premium:hover {
@@ -154,22 +156,20 @@
 }
 
 .OknoPremium {
-  position: fixed;
+  position: absolute;
   top: 0;
   margin-top: 80px;
   padding-inline: 20px;
   border: 1px solid black;
   border-radius: 20px;
-  margin-left: 30px;
   background-color: white;
-  left: 35%;
+  min-width: 354px;
 }
 
 .gbpremiumlogo {
-  margin-left: 116px;
   margin-top: -7px;
   display: block;
-  
+  margin-left: 80px;
 }
 
 .oneline {
@@ -333,42 +333,33 @@ flex-direction: row;
   margin-top: 5%;
   display: flex;
   flex-direction: row;
-  justify-content: center; 
-  align-items: center; 
-  height: 100%; 
-  width: 50%;
-  margin-left: 25%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: clamp(800px,80%,1050px);
+  margin: auto;
+  margin-top: 71px;
+  /* margin-left: 25%; */
   border: 0px;
   border-radius: 15px;
+  max-width: 1040px;
 }
 
 
 .lewaStronaLogin {
   height: 100%; 
-  width: 50%; 
-  flex-direction: column;
-  display: flex;
   margin-left: 10px;
+  width: clamp(350px, 50%, 800px);
+  border-right: 1px solid black;
 }
 
 .prawaStronaLogin {
   height: 100%; 
-  width: 50%;
-  flex-direction: column;
+  width: clamp(350px, 50%, 800px);
 }
 
-.line-vertical {
-  position: absolute;
-  left: 50%; 
-  transform: translateX(-50%); 
-  content: "";
-  width: 2px; 
-  height: 48.8vh; 
-  background-color: #000000; 
-}
 
 .LoginPhoto{
-margin-right: 40px;
 padding-left: 50px;
 }
 
@@ -394,6 +385,7 @@ padding-left: 50px;
   font-size: 20px;
   max-width: 70%;
   margin-left: 25px;
+  width: clamp(200px,70%,350px);
 
 }
 
@@ -414,7 +406,8 @@ padding-left: 50px;
   align-items: center;
   justify-content: center;
   border: 0px;
-  margin-left: 22px;
+  margin-left: 24px;
+  width: clamp(200px,80%,365px);
 }
 
 .loginButton:hover {
@@ -444,9 +437,9 @@ padding-left: 50px;
 
 .RightTextLogin {
   font-weight: bold;
-  margin-bottom: 100px;
   font-size: 22px;
-  margin-left: 80px;
+  margin-left: 90px;
+  padding-bottom: 90px;
 }
 
 
@@ -465,6 +458,7 @@ padding-left: 50px;
   margin-left: 28px;
   border-radius: 7px;
   padding: 5px;
+  width: clamp(200px, 67%, 350px);
 }
 
 .Recaptcha:hover {
@@ -532,4 +526,31 @@ padding-left: 50px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.RegisterPhoto1 {
+width: clamp(200px,70%,350px);
+position: relative;
+padding-left: 80px;
+}
+
+.RegisterPhoto2 {
+  position: relative;
+  width: clamp(200px,70%,350px);
+  padding-left: 70px;
+}
+
+.RightTextRegister {
+  font-weight: bold;
+  font-size: 22px;
+  margin-left: 90px;
+}
+
+.footLoginRegister {
+    font-style: italic;
+    margin-left: 45%;
+    margin-top: .8%;
+    margin-bottom: .8%;
+    font-weight: 400;
+  
 }

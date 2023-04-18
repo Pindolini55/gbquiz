@@ -46,21 +46,24 @@ function LoginPage() {
                         </div>
                         </div>
 
-                        <div class="line-vertical"></div>
+                     
                        
                         <div className='prawaStronaLogin'>
                         <div className='RightTextLogin'>Zaloguj się i staw czoła nowym wyzwaniom!</div>
-                        <img className='LoginPhoto' src={lp} width={359} height={269}/>
+                        <img className='LoginPhoto' src={lp}/>
 
                         </div>
 
                     </div>
                     
                 </div>
+                <footer className='footLoginRegister'>Copyright © GbQuiz 2023</footer>
                 <div className='PageFix'>
+                
                 </div>
                 </div>
             </body>
+            
         </div>
     );
 
