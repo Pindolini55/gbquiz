@@ -13,11 +13,13 @@ import gbpr from './../resources/gbpremium.png';
 import fs from './../resources/firstShow.png';
 import ss from './../resources/secondShow.png';
 import ts from './../resources/thirdShow.png';
+import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
 
   const [showModes, setShowModes] = useState(false);
   const [showPremium, setShowPremium] = useState(false);
+  const navigate = useNavigate();
 
   const handleArrowClickModes = () => {
     setShowModes(!showModes);
@@ -29,6 +31,14 @@ function MainPage() {
     setShowModes(false);
   };
 
+  const loginClick = () => {
+    navigate('/login');
+  }
+
+  const registerClick = () => {
+    navigate('/register');
+  }
+  
   return (  
 
 <div>
@@ -37,11 +47,10 @@ function MainPage() {
     <img src={Logo} width="267" />
   </div>
 
+
   <div className='TrybyNauki' onClick={handleArrowClickModes}> 
     Tryby Nauki
-  </div>
-
-  <div onClick={handleArrowClickModes} className='TrybyArrow'> 
+    <div onClick={handleArrowClickModes} className='TrybyArrow'> 
     <FaAngleDown
       style=
       {{
@@ -95,12 +104,13 @@ function MainPage() {
          
         </div> //Koniec Okna Tryby Nauki
       )}
+  </div>
+
+
 
       <div className='Premium' onClick={handleArrowClickPremium}>
         Premium
-      </div>
-
-      <div onClick={handleArrowClickPremium} className='PremiumArrow'> 
+        <div onClick={handleArrowClickPremium} className='PremiumArrow'> 
       <FaAngleDown 
       style=
       {{
@@ -132,11 +142,14 @@ function MainPage() {
 
         </div> //Koniec Okna Tryby Nauki
       )}
-    <button className='ZalogujSie'>
+      </div>
+
+      
+    <button className='ZalogujSie' onClick={loginClick}>
     Zaloguj się
     </button>
 
-    <button className='ZarejestrujSie'>
+    <button className='ZarejestrujSie' onClick={registerClick}>
     Zarejestruj się
     </button>
 

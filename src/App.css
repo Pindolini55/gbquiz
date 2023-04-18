@@ -40,12 +40,17 @@
 
 .HeaderMenu {
   display: flex;
+  padding-bottom: 5px;
 }
 
 .Logo {
   margin-top: 20px;
   margin-left: 240px ;
   display: inline-block;
+}
+
+.Logo:hover {
+  transform: scale(1.08);
 }
 
 .TrybyNauki {
@@ -55,6 +60,8 @@
   margin-top: 48px;
   font-weight: bold;
 }
+
+
 
 .TrybyNauki:hover {
   text-decoration: underline rgb(15, 189, 151) 2px;
@@ -98,7 +105,7 @@
 .content {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .content:hover {
   text-decoration: underline rgb(15, 189, 151) 2px;
@@ -112,8 +119,12 @@
 
 .trybybold {
   font-weight: bold;
+
 }
 
+.trybybold:hover {
+  transform: scale(1.08);
+}
 .Premium {
   display: inline-block;
   font-size: large;
@@ -124,6 +135,10 @@
   position: relative;
   top: 0;
   bottom: 0;
+}
+
+.Premium:hover {
+  transform: scale(1.08);
 }
 
 .Premium:hover {
@@ -140,6 +155,7 @@
 
 .OknoPremium {
   position: fixed;
+  top: 0;
   margin-top: 80px;
   padding-inline: 20px;
   border: 1px solid black;
@@ -153,6 +169,7 @@
   margin-left: 116px;
   margin-top: -7px;
   display: block;
+  
 }
 
 .oneline {
@@ -170,9 +187,13 @@ flex-direction: row;
 }
 
 .ZalogujSie {
+  /*
   position: relative;
   top: 0;
   left: 32%;
+  */
+  margin-left: auto;
+  margin-right: 10px;
   width: 191px;
   height: 70px;
   margin-top: 20px;
@@ -185,12 +206,11 @@ flex-direction: row;
 
 .ZalogujSie:hover {
  background-color: #29927C;
+ transform: scale(1.08);
 }
 
 .ZarejestrujSie {
-  position: relative;
-  top: 0;
-  left: 33%;
+  margin-right: calc((100vw - 70%)/2);
   width: 191px;
   height: 70px;
   margin-top: 20px;
@@ -203,6 +223,7 @@ flex-direction: row;
 
 .ZarejestrujSie:hover {
   background-color: #29927C;
+  transform: scale(1.08);
  }
 
 .Srodek {
@@ -217,15 +238,19 @@ flex-direction: row;
 }
 
 .firstShowimg {
-  margin-left: 460px;
+  margin:auto;
   margin-top: -30px;
   padding-top: 5px;
+  width: 70%;
+  display: block;
 }
 
 .secondShowimg {
-  margin-left: 445px;
+  margin: auto;
   margin-top: -30px;
   padding-top: 5px;
+  display: block;
+  width: 70%;
 }
 
 .firstShow {
@@ -250,8 +275,261 @@ flex-direction: row;
 
 .foot {
   font-style: italic;
-  margin-left: 40%;
+  margin-left: 42%;
   margin-top: .8%;
   margin-bottom: .8%;
   font-weight: 400;
+}
+
+.HeaderComponent {
+  background-color: white;
+  max-height: 10%;
+  display: flex;
+}
+
+.HeaderLogo {
+  margin-left: 37%;
+  margin-top: 1%;
+  padding-bottom: .7%;
+  
+}
+
+.HeaderLogo:hover {
+  transform: scale(1.1);
+}
+
+.BackArrow {
+  margin-top: 34px;
+  margin-left: 2%;
+
+}
+
+.LoginBody {
+  width: 100%;
+  position: fixed;
+  background-color:#DBEBF1;
+}
+
+.PageFix {
+  margin-top: 100%;
+}
+
+.LoginContent {
+  box-sizing: border-box;
+  font-size: 16px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  float: none;
+  position: static;
+  z-index: 1;
+  line-height: 1.5;
+}
+
+.loginWindow {
+  background-color: white;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
+  width: 50%;
+  margin-left: 25%;
+  border: 0px;
+  border-radius: 15px;
+}
+
+
+.lewaStronaLogin {
+  height: 100%; 
+  width: 50%; 
+  flex-direction: column;
+  display: flex;
+  margin-left: 10px;
+}
+
+.prawaStronaLogin {
+  height: 100%; 
+  width: 50%;
+  flex-direction: column;
+}
+
+.line-vertical {
+  position: absolute;
+  left: 50%; 
+  transform: translateX(-50%); 
+  content: "";
+  width: 2px; 
+  height: 48.8vh; 
+  background-color: #000000; 
+}
+
+.LoginPhoto{
+margin-right: 40px;
+padding-left: 50px;
+}
+
+
+.Rejestracja {
+  font-weight: 700;
+  font-size: 34px;
+  margin-left: 5px;
+}
+
+.NapisyLogin {
+  font-size: 26px;
+  font-weight: 500;
+  padding-bottom: 6px;
+  padding-top: 25px;
+  margin-left: 25px;
+}
+
+.loginInput {
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 10%;
+  font-size: 20px;
+  max-width: 70%;
+  margin-left: 25px;
+
+}
+
+.loginInput:hover {
+  transform: scale(1.08);
+}
+
+.loginButton {
+  width: 340px;
+  height: 59px;
+  background-color: #29927C;
+  flex-direction: column;
+  display: flex;
+  margin-top: 7%;
+  border-radius: 11px;
+  color: white;
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 0px;
+  margin-left: 22px;
+}
+
+.loginButton:hover {
+  transform: scale(1.08);
+}
+
+.OneText {
+  display: flex;
+}
+
+.loginQuestion {
+  font-weight: 600;
+  font-size: 14px;
+  padding-top: 15px;
+  color: #616161;
+  margin-left: 16%;
+}
+
+.RegisterText {
+  color: #616161;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-decoration: underline 1px #616161;
+}
+
+.RightTextLogin {
+  font-weight: bold;
+  margin-bottom: 100px;
+  font-size: 22px;
+  margin-left: 80px;
+}
+
+
+.loginButton:hover {
+  background-color: #176151;
+}
+
+.RegisterText:hover {
+  font-weight: bold;
+}
+
+.Recaptcha {
+  border: 1px solid black;
+  width: 69%;
+  margin-top: 40px;
+  margin-left: 28px;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.Recaptcha:hover {
+  transform: scale(1.08);
+}
+
+.RecaptchaText {
+  font-size: 24px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  margin-left: 5px;
+  padding-left: 35px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.RecaptchaText input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 300;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+  border: 1px solid black;
+}
+
+.RecaptchaText:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.RecaptchaText input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.RecaptchaText input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.RecaptchaText .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
