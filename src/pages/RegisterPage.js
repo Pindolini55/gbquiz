@@ -13,6 +13,39 @@ function RegisterPage() {
     const LoginLinkClick = () => {
         navigate('/login');
       }
+
+      const [passwordValue, setPasswordValue] = useState('');
+      const [repeatPasswordValue, setRepeatPasswordValue] = useState('');
+      const [emailValue, setEmailValue] = useState('');
+      const [wrongInputs, setWrongInputs] = useState('');
+
+
+      const handlePasswordChange = (event) => {
+        setPasswordValue(event.target.value);
+      };
+      const handleRepeatPasswordChange = (event) => {
+        setRepeatPasswordValue(event.target.value);
+      };
+
+      const handleEmailChange = (event) => {
+            setEmailValue(event.target.value)
+      }
+    
+      const checkRegister = () => {
+        const isValidEmail =  /\S+@\S+\.\S+/.test(emailValue);
+        if((passwordValue === repeatPasswordValue) && isValidEmail)
+        {
+            navigate('/registercontinue');
+        }
+        else if(!isValidEmail)
+        {
+            setWrongInputs('Podany E-mail jest nieprawidłowy!');
+        }
+        else if(passwordValue !== repeatPasswordValue)
+        {
+            setWrongInputs('Podane hasła nie są jednakowe!')
+        }
+      }
     return (
         <div>
             <Header/>
@@ -23,17 +56,20 @@ function RegisterPage() {
 
                     <div className='lewaStronaLogin'>
                         <div className='Rejestracja'>Rejestracja</div>
-                        <div className='NapisyLogin'>E-mail</div>
-                        <input className='loginInput'></input>
-                        <div className='NapisyLogin'>Hasło</div>
-                        <input className='loginInput'></input>
-                        <div className='NapisyLogin'>Powtórz Hasło</div>
-                        <input className='loginInput'></input>
 
+
+                        <div className='NapisyLogin'>E-mail</div>
+                        <input type="text" value={emailValue} onChange={handleEmailChange} className='loginInput'></input>
+
+                        <div className='NapisyLogin'>Hasło</div>
+                        <input type="password" value={passwordValue} onChange={handlePasswordChange} className='loginInput'></input>
+
+                        <div className='NapisyLogin'>Powtórz Hasło</div>
+                        <input type="password" value={repeatPasswordValue} onChange={handleRepeatPasswordChange} className='loginInput'></input>
+
+                        <div className='wrongInputs'>{wrongInputs}</div>
                         
-                        
-                        
-                        <button className='loginButton'>Zarejestruj</button>
+                        <button className='loginButton' onClick={checkRegister} >Zarejestruj</button>
                         <scipt>
                             
                         </scipt>

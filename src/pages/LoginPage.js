@@ -5,7 +5,7 @@ import rb from './../resources/robotlogin.png';
 import React, { useState } from 'react';
 import Header from './../components/Header';
 import { useNavigate } from 'react-router-dom';
-
+import LearningModesPage from './LearningModesPage';
 
 
 function LoginPage() {
@@ -37,9 +37,7 @@ function LoginPage() {
                         
                         
                         <button className='loginButton'>Zaloguj się</button>
-                        <scipt>
-                            
-                        </scipt>
+                       
                         <div className='OneText'>
                         <div className='loginQuestion'>Nie masz jeszcze konta?</div>
                         <div className='RegisterText' onClick={RegisterLinkClick}>Zarejestruj się</div>

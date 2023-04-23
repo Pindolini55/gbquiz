@@ -13,7 +13,8 @@ import gbpr from './../resources/gbpremium.png';
 import fs from './../resources/firstShow.png';
 import ss from './../resources/secondShow.png';
 import ts from './../resources/thirdShow.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+
 
 function MainPage() {
 
@@ -39,6 +40,9 @@ function MainPage() {
     navigate('/register');
   }
   
+  const ModesClick = (modeIndex) => {
+    navigate('/learningmodes', {state: {modeIndex}});
+  }
   return (  
 
 <div>
@@ -65,17 +69,17 @@ function MainPage() {
           <div className='row'>
             <div className='coll'>
 
-             <div className='content'>
+             <div className='content' onClick={() => ModesClick(0)}>
               <img src={di} alt="Dopasowania" />
               <p className='trybybold'>Dopasowania</p>
               </div>
 
-              <div className='content'>
+              <div className='content' onClick={() => ModesClick(1)}>
               <img src={qi} alt='Quiz' />
               <p className='trybybold'>Quiz</p>
               </div>
 
-              <div className='content'>
+              <div className='content' onClick={() => ModesClick(2)}>
               <img src={fi} alt='Fiszki' />
               <p className='trybybold'>Fiszki</p>
               </div>
@@ -84,17 +88,17 @@ function MainPage() {
 
           <div className='colr'>
 
-            <div className='content'>
+            <div className='content' onClick={() => ModesClick(3)}>
               <img src={ti} alt='Test' />
               <p className='trybybold'>Test</p>
               </div>
 
-              <div className='content'>
+              <div className='content' onClick={() => ModesClick(4)}>
               <img src={pi} alt='Puste Pola' />
               <p className='trybybold'>Puste Pola</p>
               </div>
 
-              <div className='content'>
+              <div className='content' onClick={() => ModesClick(5)}>
               <img src={ui} alt='Układanie' />
               <p className='trybybold'>Układanie</p>
               </div>
