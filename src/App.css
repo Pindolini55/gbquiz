@@ -730,3 +730,21 @@ button.selected {
   width: 170px;
   margin-top: 7%;
 }
+
+.wrongInputsContinue {
+  color: red;
+  display: flex;
+  margin-top: 10px;
+  font-weight: 700;
+  margin-left: 3%;
+  margin-bottom: -2%;
+}
+
+.wrongInputsLogin {
+  color: red;
+  display: flex;
+  margin-top: 15px;
+  font-weight: 700;
+  margin-left: 9%;
+  margin-bottom: -9px;
+}

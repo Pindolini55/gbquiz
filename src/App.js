@@ -4,6 +4,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import LearningModesPage from './pages/LearningModesPage';
 import RegisterContinuePage from './pages/RegisterContinuePage';
+import ClientMainPage from './pages/ClientMainPage';
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ function App() {
           <Route path="/learningmodes" element={<LearningModesPage/>}/>
 
           <Route path="/registercontinue" element={<RegisterContinuePage/>}/>
+
+          <Route path="/home" element={<ClientMainPage/>}/>
 
 
         </Routes>

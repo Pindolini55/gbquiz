@@ -70,9 +70,7 @@ function RegisterPage() {
                         <div className='wrongInputs'>{wrongInputs}</div>
                         
                         <button className='loginButton' onClick={checkRegister} >Zarejestruj</button>
-                        <scipt>
-                            
-                        </scipt>
+                        
                         <div className='OneText'>
                         <div className='loginQuestion'>Posiadasz już konto?</div>
                         <div className='RegisterText' onClick={LoginLinkClick}>Zaloguj się!</div>

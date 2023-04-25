@@ -2,10 +2,12 @@ import './../App.css';
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import lady from './../resources/continueRegisterLady.png';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterContinuePage () {
     
-
+  const navigate = useNavigate();
+  
   const [categories, setCategories] = useState([
     { value: 'category1', label: 'Piłka nożna', selected: false },
     { value: 'category2', label: 'Fotografia', selected: false },
@@ -35,6 +37,52 @@ function RegisterContinuePage () {
     setCategories(newCategories);
   }
 
+
+  const [loginValue, setLoginValue] = useState('');
+  const [nameValue, setNameValue] = useState('');
+  const [surnameValue, setSurnameValue] = useState('');
+  const [ageCategoryValue, setAgeCategoryValue] = useState('non');
+  const [wrongInputs, setWrongInputs] = useState('');
+
+  const handleLoginChange = (event) => {
+    setLoginValue(event.target.value);
+  };
+  const handleNameChange = (event) => {
+    setNameValue(event.target.value);
+  };
+
+  const handleSurnameChange = (event) => {
+    setSurnameValue(event.target.value);
+  }
+
+  const handleAgeCategoryChange = (event) => {
+    setAgeCategoryValue(event.target.value);
+  }
+
+
+  const checkSave = () => {
+    const isValidLogin = /^\w{6,}$/.test(loginValue);
+    const isValidName = /^[a-zA-Z]{3,}$/.test(nameValue);
+    const isValidSurname = /^[a-zA-Z]{3,}$/.test(nameValue);
+
+    if(!isValidLogin)
+    {
+      setWrongInputs('Nazwa użytkownika musi mieć conajmniej 6 znaków!');
+    }
+    else if(!isValidName || !isValidSurname)
+    {
+      setWrongInputs('Imię i nazwisko musi mieć conajmniej 3 znaki!');
+    }
+    else if(ageCategoryValue === "non")
+    {
+      setWrongInputs('Proszę wybrać kategorię wiekową!');
+    }
+    else
+    {
+      navigate('/home');
+    }
+  }
+
     
     return (
         <div>
@@ -49,20 +97,22 @@ function RegisterContinuePage () {
                         <div className='DaneOsobowe'>Dane Osobowe</div>
                         <div className='W8'>Jeszcze tylko chwila!</div>
 
+                        <div className='wrongInputsContinue'>{wrongInputs}</div>
+
                         <div className='NapisyLogin'>Nazwa użytkownika</div>
-                        <input className='loginInput'></input>
+                        <input type='text' value={loginValue} onChange={handleLoginChange} className='loginInput'></input>
 
 
                         <div className='NapisyLogin'>Imię</div>
-                        <input className='loginInput'></input>
+                        <input type='text' value={nameValue} onChange={handleNameChange} className='loginInput'></input>
                         
                         
                         <div className='NapisyLogin'>Nazwisko</div>
-                        <input className='loginInput'></input>
+                        <input  type='text' value={surnameValue} onChange={handleSurnameChange}  className='loginInput'></input>
                         
                         <div className='NapisyLogin'>Kategoria wiekowa</div>
-                        <select className='selectInput' name="ageCategory">
-                        <option value="">--Wybierz opcję--</option>
+                        <select className='selectInput' name="ageCategory" value={ageCategoryValue} onChange={handleAgeCategoryChange}>
+                        <option value="non">--Wybierz opcję--</option>
                          <option value="5x8">5-8</option>
                          <option value="9x12">9-12</option>
                          <option value="13x16">13-16</option>
@@ -86,7 +136,7 @@ function RegisterContinuePage () {
       ))}
  
                         
-                        <button className='saveButton'>Zapisz</button>
+                        <button className='saveButton' onClick={checkSave}>Zapisz</button>
                         
                         
                     <div className='PageFixContinue'>GBS</div>

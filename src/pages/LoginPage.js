@@ -13,6 +13,22 @@ function LoginPage() {
     const RegisterLinkClick = () => {
         navigate('/register');
       }
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const [wrongInputs, setWrongInputs] = useState('');
+
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+      }
+
+    const checkLogin = () => {
+        if(!isChecked)
+        {
+            setWrongInputs('Prosze zaznazczyć weryfikacje Recaptcha!');
+        }
+    }
+
     return (
         <div>
             <Header/>
@@ -30,14 +46,17 @@ function LoginPage() {
 
                         <div className='Recaptcha'>
                           <label className='RecaptchaText'> Nie jestem robotem
-                        <input className='CheckBoxLogin' type="checkbox" />
+                        <input className='CheckBoxLogin' type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
                         <span class="checkmark"></span>
                             </label>
                         </div>
                         
-                        
-                        <button className='loginButton'>Zaloguj się</button>
+                        <div className='wrongInputsLogin'>{wrongInputs}</div>
+
+                        <button className='loginButton' onClick={checkLogin}>Zaloguj się</button>
                        
+
+
                         <div className='OneText'>
                         <div className='loginQuestion'>Nie masz jeszcze konta?</div>
                         <div className='RegisterText' onClick={RegisterLinkClick}>Zarejestruj się</div>
