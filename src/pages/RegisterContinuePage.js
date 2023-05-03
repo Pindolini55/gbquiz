@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import lady from './../resources/continueRegisterLady.png';
 import { useNavigate } from 'react-router-dom';
+import { auth, db} from './../firebase';
 
 function RegisterContinuePage () {
     
@@ -123,7 +124,7 @@ function RegisterContinuePage () {
 
                         </select>
 
-                        <div className='NapisyLogin'>Kategorie</div>
+                        <div className='NapisyLogin'>Kategorie Quizu</div>
                       
       {categories.map((category, index) => (
         <button 

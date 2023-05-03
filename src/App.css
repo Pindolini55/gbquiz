@@ -748,3 +748,74 @@ button.selected {
   margin-left: 9%;
   margin-bottom: -9px;
 }
+
+
+.LogoHome {
+  margin-top: 1%;
+  margin-left: 2% ;
+  display: inline-block;
+  width: clamp(120px,70%,150px);
+}
+
+.homeSearch {
+  display: flex;
+  margin-left: 2%;
+  margin-top: 1.5%;
+  margin-bottom: .4%;
+  border-radius: 7px;
+  border: 1px solid rgb(131, 130, 130);
+  background-position: right center;
+  background-repeat: no-repeat;
+  width: clamp(150px,70%,230px);
+}
+
+.homeIconText {
+  padding-left: 10px;
+  display: flex;
+  
+}
+
+.homeIconText:hover {
+  text-decoration: underline rgb(15, 189, 151) 2px;
+  font-weight: 600;
+}
+
+.HomeText {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: .5%;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+.HomeIcon {
+  width: 25px;
+  height: 25px;
+  margin-top: 15%;
+  padding-left: 10%;
+}
+
+.favouriteIconText {
+  padding-left: 2%;
+  display: flex;
+  margin-top: 10px;
+}
+
+.FavouritesText {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.FavouriteIcon {
+  width: 25px;
+  height: 25px;
+  margin-top: 10px;
+  padding-left: 10%;
+  padding-right: 11%;
+}
+
+.favouriteIconText:hover {
+  text-decoration: underline rgb(15, 189, 151) 2px;
+  font-weight: 600;
+}

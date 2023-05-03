@@ -5,7 +5,7 @@ import rp2 from './../resources/registerphoto2.png';
 import React, { useState } from 'react';
 import Header from './../components/Header';
 import { useNavigate } from 'react-router-dom';
-
+import { auth, db} from './../firebase';
 
 
 function RegisterPage() {
@@ -31,11 +31,15 @@ function RegisterPage() {
             setEmailValue(event.target.value)
       }
     
-      const checkRegister = () => {
+      const checkRegister = async () => {
         const isValidEmail =  /\S+@\S+\.\S+/.test(emailValue);
         if((passwordValue === repeatPasswordValue) && isValidEmail)
         {
+            await auth
+            .createUserWithEmailAndPassword(emailValue,passwordValue)
+            .catch(error => alert(error.message))
             navigate('/registercontinue');
+            
         }
         else if(!isValidEmail)
         {
@@ -44,6 +48,19 @@ function RegisterPage() {
         else if(passwordValue !== repeatPasswordValue)
         {
             setWrongInputs('Podane hasła nie są jednakowe!')
+        }
+
+        const handleSignUp = async () => {
+            if(passwordValue === repeatPasswordValue)
+            {
+                await auth
+                .createUserWithEmailAndPassword(emailValue,passwordValue)
+                .then(userCredentials => {
+                const user = userCredentials.user;
+                db.collection('users').doc(user.uid).set({'email': user.emailValue})
+                })
+                .catch(error => alert(error.message))
+            }
         }
       }
     return (
