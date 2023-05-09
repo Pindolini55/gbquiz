@@ -1,12 +1,10 @@
 import './../App.css';
 import Logo from './../resources/logo.png';
 import lp from './../resources/loginphoto.png';
-import rb from './../resources/robotlogin.png';
 import React, { useState } from 'react';
 import Header from './../components/Header';
 import { useNavigate } from 'react-router-dom';
-import LearningModesPage from './LearningModesPage';
-
+import { auth, db} from './../firebase';
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -15,6 +13,9 @@ function LoginPage() {
       }
 
     const [isChecked, setIsChecked] = useState(false);
+
+    const [passwordValue, setPasswordValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
 
     const [wrongInputs, setWrongInputs] = useState('');
 
@@ -27,7 +28,30 @@ function LoginPage() {
         {
             setWrongInputs('Prosze zaznazczyć weryfikacje Recaptcha!');
         }
+        else
+        {
+            handleLogin();
+        }
     }
+
+    const handleEmailChange = (event) => {
+        setEmailValue(event.target.value)
+  }
+
+  const handlePasswordChange = (event) => {
+    setPasswordValue(event.target.value);
+  };
+
+    const handleLogin = async () => {
+        await auth
+          .signInWithEmailAndPassword(emailValue, passwordValue)
+          .then(userCredentials => {
+            const user = userCredentials.user;
+            navigate('/home');            
+
+          })
+          .catch(error => alert("Podany login lub hasło są nieprawidłowe!"))
+      }
 
     return (
         <div>
@@ -40,9 +64,9 @@ function LoginPage() {
                     <div className='lewaStronaLogin'>
                         <div className='Rejestracja'>Logowanie</div>
                         <div className='NapisyLogin'>E-mail</div>
-                        <input className='loginInput'></input>
+                        <input className='loginInput' value={emailValue} onChange={handleEmailChange}></input>
                         <div className='NapisyLogin'>Hasło</div>
-                        <input className='loginInput'></input>
+                        <input className='loginInput' type='password' value={passwordValue} onChange={handlePasswordChange}></input>
 
                         <div className='Recaptcha'>
                           <label className='RecaptchaText'> Nie jestem robotem

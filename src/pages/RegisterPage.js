@@ -4,9 +4,9 @@ import rp1 from './../resources/registerphoto1.jpg';
 import rp2 from './../resources/registerphoto2.png';
 import React, { useState } from 'react';
 import Header from './../components/Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { auth, db} from './../firebase';
-
+import RegisterContinuePage from './RegisterContinuePage';
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -37,8 +37,15 @@ function RegisterPage() {
         {
             await auth
             .createUserWithEmailAndPassword(emailValue,passwordValue)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                const uid = user.uid;
+                const email = user.email;
+                navigate('/registercontinue', {state: {uid, email }});
+            })
             .catch(error => alert(error.message))
-            navigate('/registercontinue');
+            
+            
             
         }
         else if(!isValidEmail)
@@ -50,18 +57,7 @@ function RegisterPage() {
             setWrongInputs('Podane hasła nie są jednakowe!')
         }
 
-        const handleSignUp = async () => {
-            if(passwordValue === repeatPasswordValue)
-            {
-                await auth
-                .createUserWithEmailAndPassword(emailValue,passwordValue)
-                .then(userCredentials => {
-                const user = userCredentials.user;
-                db.collection('users').doc(user.uid).set({'email': user.emailValue})
-                })
-                .catch(error => alert(error.message))
-            }
-        }
+      
       }
     return (
         <div>
@@ -94,8 +90,7 @@ function RegisterPage() {
                         </div>
                         </div>
 
-                     
-                       
+                        
                         <div className='prawaStronaLogin'>
                         <div className='RightTextRegister'>Zarejestruj się i korzystaj z pełni możliwości GbQuiz!</div>
                         <img className='RegisterPhoto1' src={rp1}/>

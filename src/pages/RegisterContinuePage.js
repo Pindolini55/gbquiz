@@ -2,13 +2,16 @@ import './../App.css';
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import lady from './../resources/continueRegisterLady.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { auth, db} from './../firebase';
+
 
 function RegisterContinuePage () {
     
   const navigate = useNavigate();
-  
+  const {state} = useLocation();
+  const {uid,email} = state;
+
   const [categories, setCategories] = useState([
     { value: 'category1', label: 'Piłka nożna', selected: false },
     { value: 'category2', label: 'Fotografia', selected: false },
@@ -39,10 +42,10 @@ function RegisterContinuePage () {
   }
 
 
-  const [loginValue, setLoginValue] = useState('');
-  const [nameValue, setNameValue] = useState('');
-  const [surnameValue, setSurnameValue] = useState('');
-  const [ageCategoryValue, setAgeCategoryValue] = useState('non');
+  const [login, setLoginValue] = useState('');
+  const [name, setNameValue] = useState('');
+  const [surname, setSurnameValue] = useState('');
+  const [categoryage, setAgeCategoryValue] = useState('non');
   const [wrongInputs, setWrongInputs] = useState('');
 
   const handleLoginChange = (event) => {
@@ -60,11 +63,21 @@ function RegisterContinuePage () {
     setAgeCategoryValue(event.target.value);
   }
 
+  const addUser = async () => {
+    await db.collection('users').doc(uid).set({
+      email,
+      login,
+      name,
+      surname,
+      categoryage
+    })
+  }
+
 
   const checkSave = () => {
-    const isValidLogin = /^\w{6,}$/.test(loginValue);
-    const isValidName = /^[a-zA-Z]{3,}$/.test(nameValue);
-    const isValidSurname = /^[a-zA-Z]{3,}$/.test(nameValue);
+    const isValidLogin = /^\w{6,}$/.test(login);
+    const isValidName = /^[a-zA-Z]{3,}$/.test(name);
+    const isValidSurname = /^[a-zA-Z]{3,}$/.test(name);
 
     if(!isValidLogin)
     {
@@ -74,13 +87,14 @@ function RegisterContinuePage () {
     {
       setWrongInputs('Imię i nazwisko musi mieć conajmniej 3 znaki!');
     }
-    else if(ageCategoryValue === "non")
+    else if(categoryage === "non")
     {
       setWrongInputs('Proszę wybrać kategorię wiekową!');
     }
     else
     {
-      navigate('/home');
+      addUser();
+      navigate('/home', {state: {email,login}});
     }
   }
 
@@ -101,18 +115,18 @@ function RegisterContinuePage () {
                         <div className='wrongInputsContinue'>{wrongInputs}</div>
 
                         <div className='NapisyLogin'>Nazwa użytkownika</div>
-                        <input type='text' value={loginValue} onChange={handleLoginChange} className='loginInput'></input>
+                        <input type='text' value={login} onChange={handleLoginChange} className='loginInput'></input>
 
 
                         <div className='NapisyLogin'>Imię</div>
-                        <input type='text' value={nameValue} onChange={handleNameChange} className='loginInput'></input>
+                        <input type='text' value={name} onChange={handleNameChange} className='loginInput'></input>
                         
                         
                         <div className='NapisyLogin'>Nazwisko</div>
-                        <input  type='text' value={surnameValue} onChange={handleSurnameChange}  className='loginInput'></input>
+                        <input  type='text' value={surname} onChange={handleSurnameChange}  className='loginInput'></input>
                         
                         <div className='NapisyLogin'>Kategoria wiekowa</div>
-                        <select className='selectInput' name="ageCategory" value={ageCategoryValue} onChange={handleAgeCategoryChange}>
+                        <select className='selectInput' name="ageCategory" value={categoryage} onChange={handleAgeCategoryChange}>
                         <option value="non">--Wybierz opcję--</option>
                          <option value="5x8">5-8</option>
                          <option value="9x12">9-12</option>
