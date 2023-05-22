@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { db } from './../firebase';
 import './../App.css';
 import HeaderLogged from '../components/HeaderLogged';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useFlip, Flipper } from 'react-flip-toolkit';
 import { Card, Button } from 'react-bootstrap';
 
 
+
 function FlashcardMode({ questions }) {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+ 
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const [isCardFlippedBack, setIsCardFlippedBack] = useState(false);
 
@@ -32,9 +34,9 @@ function FlashcardMode({ questions }) {
     setIsCardFlippedBack(false);
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
-  
+
     const currentQuestion = questions[currentQuestionIndex];
-  
+
     return (
     <div className="FlashcardPage">
     <HeaderLogged/>
@@ -78,10 +80,11 @@ function FlashcardMode({ questions }) {
   }
 
 
+
 const FlashcardsPage = () => {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
-
+  const navigate = useNavigate();
   const {state} = useLocation();
   const { id } = state;
 
@@ -94,21 +97,30 @@ const FlashcardsPage = () => {
 
       const questionsRef = quizRef.collection('questions');
       const questionsSnapshot = await questionsRef.get();
-      const questionsData = questionsSnapshot.docs.map((doc) => doc.data());
-
-      setQuestions(questionsData);
-      setLoading(false);
+      if(!questionsSnapshot.empty) {
+        const questionsData = questionsSnapshot.docs.map((doc) => doc.data());
+        setQuestions(questionsData);
+        setLoading(false);
+      }
+      else
+      {
+        navigate('/home');
+        alert("Ten Quiz jest niedostępny!");
+        
+      }
     };
 
     fetchData();
   }, []);
-
+  
   
 
-  if (loading) {
+ if (loading) 
+ {
     return <div>Ładowanie...</div>;
-  } else {
+  }
+  else {
     return <FlashcardMode questions={questions} />;
-}
+  }
                 }
 export default FlashcardsPage;

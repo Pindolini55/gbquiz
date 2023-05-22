@@ -18,7 +18,7 @@ const {state} = useLocation();
         <div className='modesContent'>
           <h1 className='modesTitle'>Tryby nauki</h1>
           <div className="modes">
-            <button onClick={() => navigate('/matches', {state: {id: id}})} className='buttonModes'>
+            <button  className='buttonModes'>
               Dopasowania
             </button>
           </div>
@@ -33,17 +33,17 @@ const {state} = useLocation();
             </button>
           </div>
           <div className="modes">
-            <button onClick={() => navigate('/test', {state: {id: id}})} className='buttonModes'>
-              Test
+            <button onClick={() => navigate('/truefalse', {state: {id: id}})} className='buttonModes'>
+              Prawda Fałsz
             </button>
           </div>
           <div className="modes">
-            <button onClick={() => navigate('/blanks', {state: {id: id}})} className='buttonModes'>
+            <button  className='buttonModes'>
               Puste Pola
             </button>
           </div>
           <div className="modes">
-            <button onClick={() => navigate('/stack', {state: {id: id}})} className='buttonModes'>
+            <button className='buttonModes'>
               Układanie
             </button>
           </div>

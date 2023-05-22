@@ -27,7 +27,7 @@ function LearningModesPage ()  {
         imageUrl: "https://i.imgur.com/C3D6XTl.png"
     },
         { 
-        name: "Test", 
+        name: "Prawda Fałsz", 
         description: "Tryb ten polega na sprawdzaniu wiedzy poprzez rozwiązanie testu składającego się z pytań otwartych lub zamkniętych. Testy mogą być stosowane w różnych dziedzinach, np. w nauce języka obcego, matematyce lub historii.",
         imageUrl: "https://i.imgur.com/stCOC0w.png"
     },

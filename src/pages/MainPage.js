@@ -90,7 +90,7 @@ function MainPage() {
 
             <div className='content' onClick={() => ModesClick(3)}>
               <img src={ti} alt='Test' />
-              <p className='trybybold'>Test</p>
+              <p className='trybybold'>Prawda Fałsz</p>
               </div>
 
               <div className='content' onClick={() => ModesClick(4)}>

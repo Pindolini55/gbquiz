@@ -10,6 +10,7 @@ import EditProfilePage from './pages/EditProfilePage';
 import QuizPage from './pages/QuizPage';
 import ChooseModePage from './pages/ChooseModePage';
 import FlashcardsPage from './pages/FlashcardsPage';
+import TrueFalsePage from './pages/TrueFalsePage';
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -41,6 +42,8 @@ function App() {
           <Route path="/modes" element={<ChooseModePage/>}/>
 
           <Route path="/flashcards" element={<FlashcardsPage/>}/>
+
+          <Route path="/truefalse" element={<TrueFalsePage/>}/>
 
 
         </Routes>
