@@ -45,8 +45,8 @@ function LoginPage() {
     const handleLogin = async () => {
         await auth
           .signInWithEmailAndPassword(emailValue, passwordValue)
-          .then(userCredentials => {
-            const user = userCredentials.user;
+          .then(() => {
+            
             navigate('/home');            
 
           })
@@ -96,12 +96,12 @@ function LoginPage() {
                         </div>
 
                     </div>
-                    
+                    <div className='PageFix'>
+                gbs
+                </div>
                 </div>
                 <footer className='footLoginRegister'>Copyright © GbQuiz 2023</footer>
-                <div className='PageFix'>
                 
-                </div>
                 </div>
             </body>
             
