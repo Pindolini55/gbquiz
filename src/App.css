@@ -332,7 +332,7 @@ flex-direction: row;
   height: 100%;
   width: clamp(800px,80%,1050px);
   margin: auto;
-  margin-top: 71px;
+  margin-top: 20px;
   border: 0px;
   border-radius: 15px;
   max-width: 1040px;
@@ -583,7 +583,7 @@ padding-left: 80px;
   margin-left: 30%;
   padding-bottom: 1%;
   padding-top: 1%;
-  margin-right: 26%;
+  margin-right: 24.5%;
   border: 1px solid black;
   margin-top: 10px;
   margin-bottom: 5px;
@@ -1084,7 +1084,7 @@ flex-direction: row;
   height: 100%;
   width: clamp(800px,80%,1050px);
   margin: auto;
-  margin-top: 71px;
+  margin-top: 20px;
   border: 0px;
   border-radius: 15px;
   max-width: 1040px;
@@ -1189,7 +1189,7 @@ margin-left: -58%;
   height: clamp(700px,95%,740px);
   margin-left: calc((100vw - 91%)/2);
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 
 .question-section {
@@ -1506,4 +1506,10 @@ flex-direction: row;
 .FixedScoreUp {
 margin-top: 13%;
 color: white;
+}
+
+.buttonModes.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  background-color: rgb(163, 163, 163);
 }

@@ -15,7 +15,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { FaHandHolding } from 'react-icons/fa';
 
 function ClientMainPage () {
-    
+  function getQuestionText(count) {
+    if (count === 1) {
+      return 'pytanie';
+    } else if (count >= 2 && count <= 4) {
+      return 'pytania';
+    } else {
+      return 'pytań';
+    }
+  }
     const [showProfile, setShowProfile] = useState(false);
     const navigate = useNavigate();
     const [login,setLogin] = useState('');
@@ -43,38 +51,48 @@ function ClientMainPage () {
       navigate('/settings');
     }
 
-    const [testlogin, setTestLogin] = useState('marianektester');
-    const [testemail, setTestEmail] = useState('marianos2023@wp.pl');
-
     const [quizzes, setQuizzes] = useState([]);
     const [categories, setCategories] = useState([]);
     const [displayedQuizzes, setDisplayedQuizzes] = useState([]);
+    const [questionCounts, setQuestionCounts] = useState({});
     
     useEffect(() => {
-        // pobierz quizy z bazy danych Firebase
-        db.collection("quizes")
-          .get()
-          .then((querySnapshot) => {
-            const data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            setQuizzes(data);
-            // uzyskaj listę kategorii z pobranych quizów
-            const uniqueCategories = Array.from(new Set(data.map((quiz) => quiz.category)));
-            setCategories(uniqueCategories);
-
-
+      db.collection("quizes")
+        .get()
+        .then((querySnapshot) => {
+          const data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+          setQuizzes(data);
+          const uniqueCategories = Array.from(new Set(data.map((quiz) => quiz.category)));
+          setCategories(uniqueCategories);
+    
+          // Oblicz liczbę pytań dla każdego quizu
+          const questionCounts = {};
+          data.forEach((quiz) => {
+            const quizId = quiz.id;
+            db.collection("quizes")
+              .doc(quizId)
+              .collection("questions")
+              .get()
+              .then((querySnapshot) => {
+                questionCounts[quizId] = querySnapshot.size;
+                setQuestionCounts({ ...questionCounts });
+              });
           });
-          db.collection('users').doc(uid).get()
-          .then((doc) => {
-            if (doc.exists) {
-              const data = doc.data();
-              setLogin(data.login);
-              setEmail(data.email);
-              console.log(login, email);
-            } else {
-              console.log("Nie znaleziono dokumentu");
-            }
-          })
-      }, []);
+        });
+    
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            setLogin(data.login);
+            setEmail(data.email);
+          } else {
+            console.log("Nie znaleziono dokumentu");
+          }
+        });
+    }, []);
     
   
     
@@ -198,7 +216,10 @@ function ClientMainPage () {
                 </div>
                 <div className="quiz-details">
                 <div className="quiz-name">{quiz.name}</div>
-                  <div className="quiz-count">{quiz.questioncounter} pytań</div>
+                <div className="quiz-count">
+  {questionCounts[quiz.id] || 0} {getQuestionText(questionCounts[quiz.id] || 0)}
+</div>
+
                 </div>
               </div>
             );
