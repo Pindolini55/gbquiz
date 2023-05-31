@@ -11,13 +11,13 @@ import { TiChevronLeft } from "react-icons/ti";
   
 function EditProfilePage ()  {
     const uid = auth.currentUser?.uid;
-    console.log(uid);
     const [login,setLogin] = useState('');
     const [email,setEmail] = useState('');
     const [name,setName] = useState('');
     const [surname,setSurname] = useState('');
     const [categoryage,setCategoryAge] = useState('');
-    
+    const [changeButtonVisible, setChangeButtonVisible] = useState(false);
+    const [sendButtonVisible, setSendButtonVisible] = useState(false);
     
     
 
@@ -51,6 +51,8 @@ function EditProfilePage ()  {
     const [activePanel, setActivePanel] = useState('');
     const [rightPanelText, setRightPanelText] = useState('');
 
+    
+
     const handleActiveClick = () => {
       setIsActive(!isActive);
     }
@@ -59,46 +61,59 @@ function EditProfilePage ()  {
       setActivePanel('login');
       setRightPanelText('Zmiana Loginu');
       setIsActive(!isActive);
+      setChangeButtonVisible(true);
+      setSendButtonVisible(false);
     }
     
     const handleEmailClick = () => {
       setActivePanel('email');
-      setRightPanelText('Zmiana emaila');
+      setRightPanelText('Zmiana e-mailu');
       setIsActive(!isActive);
+      setChangeButtonVisible(false);
+      setSendButtonVisible(true);
     }
     
     const handleNameClick = () => {
       setActivePanel('name');
       setRightPanelText('Zmiana imienia');
       setIsActive(!isActive);
+      setChangeButtonVisible(true);
+      setSendButtonVisible(false);
     }
     
     const handleSurnameClick = () => {
       setActivePanel('surname');
       setRightPanelText('Zmiana nazwiska');
       setIsActive(!isActive);
+      setChangeButtonVisible(true);
+      setSendButtonVisible(false);
     }
     
     const handleCategoryAgeClick = () => {
       setActivePanel('categoryage');
       setRightPanelText('Zmiana kategorii wiekowej');
       setIsActive(!isActive);
+      setChangeButtonVisible(true);
+      setSendButtonVisible(false);
     }
 
-
-    const [loginInput,setLoginInput] = useState('');
     const [emailInput,setEmailInput] = useState('');
+    const [loginInput,setLoginInput] = useState('');
     const [nameInput,setNameInput] = useState('');
     const [surnameInput,setSurnameInput] = useState('');
     const [categoryageInput,setCategoryAgeInput] = useState('');
+
+
+    const handleEmailChange = (event) => {
+      setEmailInput(event.target.value)
+}
+
 
     const handleLoginChange = (event) => {
       setLoginInput(event.target.value)
 }
 
-const handleEmailChange = (event) => {
-  setEmailInput(event.target.value);
-};
+
 const handleNameChange = (event) => {
   setNameInput(event.target.value);
 };
@@ -112,6 +127,8 @@ const handleCategoryChange = (event) => {
 
     const changeData = async () => {
       const dbref = db.collection('users').doc(auth.currentUser?.uid)
+      const user = auth.currentUser;
+      auth.currentUser.updateEmail(emailInput);
       if(activePanel === 'login')
       {
          await dbref.set({
@@ -119,12 +136,18 @@ const handleCategoryChange = (event) => {
           }, {merge: true})
           setIsActive(!isActive);
       }
-      else if(activePanel === 'email')
+      else if(activePanel === 'email' )
       {
+        user.updateEmail(emailInput).then(() => {
+          console.log("Wysłano link na nowy e-mail");
+        }).catch((error) => {
+          console.log(error);
+        });
        await dbref.set({
           email: emailInput
             }, {merge: true})
             setIsActive(!isActive);
+            logOut();
       }
       else if(activePanel === 'name')
       {
@@ -147,8 +170,18 @@ const handleCategoryChange = (event) => {
             }, {merge: true})
             setIsActive(!isActive);
       }
-    }
+      else {
 
+      }
+      navigate("/home");
+    }
+    const logOut = () => {
+      auth
+      .signOut()
+      .then(() => {
+       navigate('/');
+      })
+    }
     return (
         <div>
             <HeaderLogged/>
@@ -195,7 +228,7 @@ const handleCategoryChange = (event) => {
                           <TiChevronLeft className='BackArrowEdit' size={40} onClick={handleActiveClick} />
                           <p className='rightPanelText'>{rightPanelText}</p>
                           {activePanel === 'login' && <input type='text' value={loginInput} onChange={handleLoginChange} className='editInput' placeholder='Nowy Login'/>}
-                          {activePanel === 'email' && <input type='email' value={emailInput} onChange={handleEmailChange} className='editInput' placeholder='Nowy E-mail'/>}
+                          {activePanel === 'email' && <input type='text' value={emailInput} onChange={handleEmailChange} className='editInput' placeholder='Nowy E-mail'/> } 
                           {activePanel === 'name' && <input type='text' value={nameInput} onChange={handleNameChange} className='editInput' placeholder='Nowe Imię'/>}
                           {activePanel === 'surname' && <input type='text' value={surnameInput} onChange={handleSurnameChange}  className='editInput' placeholder='Nowe Nazwisko'/>}
                           {activePanel === 'categoryage' && <select className='selectInput' name="ageCategory" value={categoryageInput} onChange={handleCategoryChange}>
@@ -209,7 +242,8 @@ const handleCategoryChange = (event) => {
                         <option value="26x30">30+</option>
 
                         </select>}
-                          <button className='ChangeButton' onClick={changeData}>Zapisz Zmiany</button>
+                     <button className='ChangeButton' onClick={changeData}>Zapisz Zmiany</button>
+  
                         </div>
                         
 
